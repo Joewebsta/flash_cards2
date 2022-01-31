@@ -1,3 +1,11 @@
 # frozen_string_literal: true
 
-puts 'Hello world!'
+class Card
+  attr_reader :question, :answer, :category
+
+  def initialize(question, answer, category)
+    @question = question
+    @answer = answer
+    @category = category
+  end
+end
