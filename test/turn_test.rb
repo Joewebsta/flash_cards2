@@ -7,7 +7,7 @@ Minitest::Reporters.use!
 require_relative '../lib/turn'
 require_relative '../lib/card'
 
-class CardTest < MiniTest::Test
+class TurnTest < MiniTest::Test
   def setup
     @card = Card.new('What is the capital of Alaska?', 'Juneau', :Geography)
     @turn_correct = Turn.new('Juneau', @card)
