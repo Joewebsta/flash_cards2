@@ -25,13 +25,40 @@ class Round
   end
 
   def number_correct
-    turns.filter(&:correct?).size
+    correct_turns.size
+  end
+
+  def number_correct_by_category(category)
+    correct_turns_by_category(category).size
+  end
+
+  def percent_correct
+    (number_correct.to_f / turns.size * 100).truncate(2)
+  end
+
+  def percent_correct_by_category(category)
+    num_correct = number_correct_by_category(category)
+    total = number_turns_by_category(category)
+    (num_correct.to_f / total * 100).truncate(2)
   end
 
   private
 
   def advance_deck_card
     @cards.delete_at(0)
+  end
+
+  def correct_turns
+    turns.filter(&:correct?)
+  end
+
+  def correct_turns_by_category(category)
+    # fix turn.card.
+    correct_turns.filter { |turn| turn.card.category == category }
+  end
+
+  def number_turns_by_category(category)
+    turns.filter { |turn| turn.card.category == category }.size
   end
 end
 
@@ -45,16 +72,21 @@ round = Round.new(deck)
 # p round.turns
 # p deck.cards
 #
-new_turn = round.take_turn('Juneau')
-# p new_turn
-# p new_turn.class
-# p new_turn.correct?
-
+round.take_turn('Juneau')
+round.take_turn('Mars')
+round.take_turn('North north wes')
+# p round.number_correct
+# p round.current_card.question
 # p round.turns
 # p round.number_correct
 
-# p round.current_card.question
-round.take_turn('Venus')
+# p round.number_correct_by_category(:Geography)
+# p round.number_correct_by_category(:STEM)
+p round.percent_correct
+
+p round.percent_correct_by_category(:STEM)
+p round.percent_correct_by_category(:Geography)
+
 # p round.turns.count
 # p round.turns.last.feedback
-p round.number_correct
+#
