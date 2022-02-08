@@ -60,32 +60,3 @@ class Round
     turns.filter { |turn| turn.card_category == category }.size
   end
 end
-
-card1 = Card.new('What is the capital of Alaska?', 'Juneau', :Geography)
-card2 = Card.new('The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?', 'Mars', :STEM)
-card3 = Card.new('Describe in words the exact direction that is 697.5° clockwise from due north?', 'North north west', :STEM)
-deck = Deck.new([card1, card2, card3])
-round = Round.new(deck)
-
-# p round.deck
-# p round.turns
-# p deck.cards
-#
-round.take_turn('Juneau')
-round.take_turn('Mars')
-round.take_turn('North north wes')
-# p round.number_correct
-# p round.current_card.question
-# p round.turns
-# p round.number_correct
-
-# p round.number_correct_by_category(:Geography)
-# p round.number_correct_by_category(:STEM)
-p round.percent_correct
-
-p round.percent_correct_by_category(:STEM)
-p round.percent_correct_by_category(:Geography)
-
-# p round.turns.count
-# p round.turns.last.feedback
-#
