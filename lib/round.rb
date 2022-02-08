@@ -38,8 +38,8 @@ class Round
 
   def percent_correct_by_category(category)
     num_correct = number_correct_by_category(category)
-    total = number_turns_by_category(category)
-    (num_correct.to_f / total * 100).truncate(2)
+    num_turns = number_turns_by_category(category)
+    (num_correct.to_f / num_turns * 100).truncate(2)
   end
 
   private
@@ -53,12 +53,11 @@ class Round
   end
 
   def correct_turns_by_category(category)
-    # fix turn.card.
-    correct_turns.filter { |turn| turn.card.category == category }
+    correct_turns.filter { |turn| turn.card_category == category }
   end
 
   def number_turns_by_category(category)
-    turns.filter { |turn| turn.card.category == category }.size
+    turns.filter { |turn| turn.card_category == category }.size
   end
 end
 
