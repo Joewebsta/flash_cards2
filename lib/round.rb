@@ -13,6 +13,25 @@ class Round
     @turns = []
   end
 
+  def start
+    puts intro
+
+    loop do
+      puts "This is card number #{@turns.size + 1} out of #{@cards.size}."
+      puts current_card.question
+      answer = gets.chomp
+      take_turn(answer)
+      break if @turns.size == @cards.size
+    end
+  end
+
+  def intro
+    <<~INTRO
+      Welcome! You're playing with #{@cards.size} cards.
+      -------------------------------------------------
+    INTRO
+  end
+
   def current_card
     @cards.first
   end
