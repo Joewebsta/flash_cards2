@@ -23,6 +23,14 @@ class RoundTest < MiniTest::Test
     assert_equal([], @round.turns)
   end
 
+  def test_round_turns
+    @round.take_turn('Juneau')
+    @round.take_turn('Mars')
+    @round.take_turn('North')
+
+    assert_equal(3, @round.turns.size)
+  end
+
   def test_current_card
     assert_equal(@card1, @round.current_card)
   end
@@ -37,5 +45,32 @@ class RoundTest < MiniTest::Test
   def test_number_correct
     @round.take_turn('Juneau')
     assert_equal(1, @round.number_correct)
+    @round.take_turn('Mars')
+    assert_equal(2, @round.number_correct)
+    @round.take_turn('North')
+    assert_equal(2, @round.number_correct)
+  end
+
+  def test_number_correct_by_category
+    @round.take_turn('Juneau')
+    assert_equal(1, @round.number_correct_by_category(:Geography))
+    assert_equal(0, @round.number_correct_by_category(:STEM))
+  end
+
+  def test_percent_correct
+    @round.take_turn('Juneau')
+    assert_equal(100.0, @round.percent_correct)
+    @round.take_turn('Mars')
+    assert_equal(100.0, @round.percent_correct)
+    @round.take_turn('North')
+    assert_equal(66.66, @round.percent_correct)
+  end
+
+  def test_percent_correct_by_category
+    @round.take_turn('Juneau')
+    @round.take_turn('Mars')
+    @round.take_turn('North')
+    assert_equal(100.0, @round.percent_correct_by_category(:Geography))
+    assert_equal(50.0, @round.percent_correct_by_category(:STEM))
   end
 end
