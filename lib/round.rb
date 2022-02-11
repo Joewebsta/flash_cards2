@@ -9,7 +9,7 @@ class Round
 
   def initialize(deck)
     @deck = deck
-    @cards = deck.cards
+    @cards = deck.cards.dup
     @turns = []
   end
 
@@ -17,11 +17,12 @@ class Round
     puts intro
 
     loop do
-      puts "This is card number #{@turns.size + 1} out of #{@cards.size}."
+      break if @turns.size == @deck.count
+
+      puts "This is card number #{@turns.size + 1} out of #{@deck.count}."
       puts current_card.question
       answer = gets.chomp
       take_turn(answer)
-      break if @turns.size == @cards.size
     end
   end
 
