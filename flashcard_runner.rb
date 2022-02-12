@@ -12,15 +12,10 @@ class FlashCardSession
     loop do
       break if turns_completed?
 
-      display_card_progress
-      display_current_question
-      answer_question
-      display_question_feedback
+      review_cards
     end
 
-    display_game_over
-    display_round_stats
-    display_category_stats
+    game_over_and_stats
   end
 
   private
@@ -39,6 +34,19 @@ class FlashCardSession
       Welcome! You're playing with #{@deck.count} cards.
       -------------------------------------------------
     INTRO
+  end
+
+  def review_cards
+    display_card_progress
+    display_current_question
+    answer_question
+    display_question_feedback
+  end
+
+  def game_over_and_stats
+    display_game_over
+    display_round_stats
+    display_category_stats
   end
 
   def turns_completed?
