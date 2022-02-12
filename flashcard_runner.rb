@@ -25,13 +25,13 @@ class FlashCardSession
     card2 = Card.new('The Viking spacecraft sent back to Earth photographs and reports about the surface of which planet?', 'Mars', :STEM)
     card3 = Card.new('Describe in words the exact direction that is 697.5° clockwise from due north?', 'North north west', :STEM)
     cards = [card1, card2, card3]
-    @deck = Deck.new(cards)
-    @round = Round.new(@deck)
+    deck = Deck.new(cards)
+    @round = Round.new(deck)
   end
 
   def display_intro_message
     puts <<~INTRO
-      Welcome! You're playing with #{@deck.count} cards.
+      Welcome! You're playing with #{@round.total_deck_cards} cards.
       -------------------------------------------------
     INTRO
   end
@@ -50,12 +50,12 @@ class FlashCardSession
   end
 
   def turns_completed?
-    @round.turns.size == @deck.count
+    @round.turns.size == @round.total_deck_cards
   end
 
   def display_card_progress
     # Refactor @round.turns.size + 1?
-    puts "This is card number #{@round.turns.size + 1} out of #{@deck.count}."
+    puts "This is card number #{@round.turns.size + 1} out of #{@round.total_deck_cards}."
   end
 
   def display_current_question
@@ -76,8 +76,7 @@ class FlashCardSession
   end
 
   def display_round_stats
-    # move logic to round?
-    puts "You had #{@round.number_correct} correct guesses out of #{@deck.count} for a total score of #{@round.percent_correct}%."
+    puts "You had #{@round.number_correct} correct guesses out of #{@round.total_deck_cards} for a total score of #{@round.percent_correct}%."
   end
 
   def display_category_stats

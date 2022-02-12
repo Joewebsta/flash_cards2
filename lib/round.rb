@@ -24,6 +24,10 @@ class Round
     turn
   end
 
+  def total_deck_cards
+    @deck.count
+  end
+
   def number_correct
     correct_turns.size
   end
