@@ -17,6 +17,10 @@ class FlashCardSession
       answer_question
       display_question_feedback
     end
+
+    display_game_over
+    display_round_stats
+    display_category_stats
   end
 
   private
@@ -58,6 +62,17 @@ class FlashCardSession
     # Refactor line below?
     puts @round.turns.last.feedback
   end
+
+  def display_game_over
+    puts '****** Game over! ******'
+  end
+
+  def display_round_stats
+    display_category_stats
+    puts "You had #{@round.number_correct} correct guesses out of #{@deck.count} for a total score of #{@round.percent_correct}%."
+  end
+
+  def display_category_stats; end
 end
 
 FlashCardSession.new.start
