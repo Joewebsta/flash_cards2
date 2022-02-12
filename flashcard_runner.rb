@@ -68,11 +68,21 @@ class FlashCardSession
   end
 
   def display_round_stats
-    display_category_stats
+    # move logic to round?
     puts "You had #{@round.number_correct} correct guesses out of #{@deck.count} for a total score of #{@round.percent_correct}%."
   end
 
-  def display_category_stats; end
+  def display_category_stats
+    # move logic to round?
+    categories = @round.turns.map(&:card_category).uniq
+    categories.each do |category|
+      percent_correct = @round.percent_correct_by_category(category)
+      puts "#{category} - #{percent_correct}% correct"
+    end
+  end
 end
 
 FlashCardSession.new.start
+
+# Todo
+# Check all classes for public methods that should be private.
