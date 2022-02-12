@@ -33,13 +33,13 @@ class Round
   end
 
   def percent_correct
-    (number_correct.to_f / turns.size * 100).truncate(2)
+    (number_correct.to_f / turns.size * 100).round
   end
 
   def percent_correct_by_category(category)
     num_correct = number_correct_by_category(category)
     num_turns = number_turns_by_category(category)
-    (num_correct.to_f / num_turns * 100).truncate(2)
+    (num_correct.to_f / num_turns * 100).round
   end
 
   private
