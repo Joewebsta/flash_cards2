@@ -9,7 +9,7 @@ class Round
 
   def initialize(deck)
     @deck = deck
-    @cards = deck.cards.dup
+    @cards = @deck.cards.dup
     @turns = []
   end
 
@@ -26,6 +26,10 @@ class Round
 
   def total_deck_cards
     @deck.count
+  end
+
+  def current_card_pos
+    @deck.cards.find_index(current_card) + 1
   end
 
   def number_correct

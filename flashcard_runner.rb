@@ -8,13 +8,7 @@ require_relative 'lib/round'
 class FlashCardSession
   def start
     display_intro_message
-
-    loop do
-      break if turns_completed?
-
-      review_cards
-    end
-
+    review_cards until turns_completed?
     game_over_and_stats
   end
 
@@ -54,8 +48,7 @@ class FlashCardSession
   end
 
   def display_card_progress
-    # Refactor @round.turns.size + 1?
-    puts "This is card number #{@round.turns.size + 1} out of #{@round.total_deck_cards}."
+    puts "This is card number #{@round.current_card_pos} out of #{@round.total_deck_cards}."
   end
 
   def display_current_question
