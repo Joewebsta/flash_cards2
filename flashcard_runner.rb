@@ -60,8 +60,7 @@ class FlashCardSession
   end
 
   def display_question_feedback
-    # Refactor line below?
-    puts @round.turns.last.feedback
+    puts @round.last_question_feedback
   end
 
   def display_game_over

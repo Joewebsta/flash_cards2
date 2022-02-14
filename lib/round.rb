@@ -50,6 +50,10 @@ class Round
     (num_correct.to_f / num_turns * 100).round
   end
 
+  def last_question_feedback
+    @turns.last.feedback
+  end
+
   private
 
   def advance_deck_card
