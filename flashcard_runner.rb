@@ -15,7 +15,7 @@ class FlashCardSession
   private
 
   def initialize
-    cards = CardConverter.create_cards
+    cards = CardConverter.create_cards('data/cards.csv')
     deck = Deck.new(cards)
     @round = Round.new(deck)
   end

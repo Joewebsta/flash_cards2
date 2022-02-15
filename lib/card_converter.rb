@@ -4,8 +4,7 @@ require 'csv'
 require_relative 'card'
 
 class CardConverter
-  def self.create_cards
-    path = 'data/cards.csv'
+  def self.create_cards(path)
     table = CSV.read(path, headers: true)
 
     table.each_with_object([]) do |row, cards|
