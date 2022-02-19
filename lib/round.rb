@@ -54,6 +54,13 @@ class Round
     @turns.last.feedback
   end
 
+  def category_stats
+    category_list.map do |category|
+      percent_correct = percent_correct_by_category(category)
+      "#{category} - #{percent_correct}% correct"
+    end
+  end
+
   private
 
   def advance_deck_card
@@ -70,5 +77,9 @@ class Round
 
   def number_turns_by_category(category)
     turns.filter { |turn| turn.card_category == category }.size
+  end
+
+  def category_list
+    @turns.map(&:card_category).uniq
   end
 end

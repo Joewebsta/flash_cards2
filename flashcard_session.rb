@@ -27,21 +27,15 @@ class FlashCardSession
     INTRO
   end
 
+  def turns_completed?
+    @round.turns.size == @round.total_deck_cards
+  end
+
   def review_cards
     display_card_progress
     display_current_question
     answer_question
     display_question_feedback
-  end
-
-  def game_over_and_stats
-    display_game_over
-    display_round_stats
-    display_category_stats
-  end
-
-  def turns_completed?
-    @round.turns.size == @round.total_deck_cards
   end
 
   def display_card_progress
@@ -60,6 +54,12 @@ class FlashCardSession
     puts @round.last_question_feedback
   end
 
+  def game_over_and_stats
+    display_game_over
+    display_round_stats
+    display_category_stats
+  end
+
   def display_game_over
     puts '****** Game over! ******'
   end
@@ -69,16 +69,12 @@ class FlashCardSession
   end
 
   def display_category_stats
-    # move logic to round?
-    categories = @round.turns.map(&:card_category).uniq
-    categories.each do |category|
-      percent_correct = @round.percent_correct_by_category(category)
-      puts "#{category} - #{percent_correct}% correct"
-    end
+    puts @round.category_stats
   end
 end
 
 FlashCardSession.new.start
 
 # Todo
+# Compare code with Turing instructor code
 # Check all classes for public methods that should be private.
