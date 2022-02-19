@@ -22,6 +22,7 @@ class FlashCardSession
 
   def display_intro_message
     puts <<~INTRO
+
       Welcome! You're playing with #{@round.total_deck_cards} cards.
       -------------------------------------------------
     INTRO
@@ -51,7 +52,10 @@ class FlashCardSession
   end
 
   def display_question_feedback
-    puts @round.last_question_feedback
+    puts <<~FEEDBACK
+      #{@round.last_question_feedback}
+
+    FEEDBACK
   end
 
   def game_over_and_stats
@@ -70,6 +74,7 @@ class FlashCardSession
 
   def display_category_stats
     puts @round.category_stats
+    puts
   end
 end
 
